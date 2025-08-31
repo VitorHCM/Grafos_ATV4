@@ -15,24 +15,24 @@ class Grafer(Grafo):
     #=================================================================#
     #Metodos para Criar Grafos
 
-    def criarGrafoDenso(listaDeGrafos, size):
+    def criarGrafoDenso(size):
         grafo = [[0 for _ in range(size)] for _ in range(size)]
-
         return grafo
     
-    def criarGrafoEsparso(self):
+    def criarGrafoEsparso(size):
         return super().criarGrafoEsparso()
 
     #=================================================================#
     #Menus para o programa
 
+    #header com instituicao e aluno
     def header():
         print(": CS: IESB ")
         print(": Atividades de Grafos ")
         print(": Aluno: Vitor Hugo Campos ")
         print(": Matricula: 2312130182 \n")
 
-
+    #Menu principal porem com outro nome por que sim (preguica de mudar o nome p principal)
     def menuIntro(listaDeGrafos):
         Grafer.clear()
 
@@ -67,6 +67,7 @@ class Grafer(Grafo):
         return select
             #retorna o numero do menu a ser acessado
 
+    #menu que mostra os grafos ja criados
     def menuGrafosJaCriados(listaDeGrafos):
 
         Grafer.header()
@@ -79,26 +80,73 @@ class Grafer(Grafo):
         input("\n: Pressione Enter para retornar para o menu pricipal: [ENTER]")
         return
 
+    #menu para escolher as funcoes realizadas nas atividades
     def menuFuctionsEntreGrafos(self):
 
         return super().menuFuctionsEntreGrafos()
 
+    #menu para realizar a criacao de um novo grafo
     def menuCriaGrafo(listaDeGrafos):
-        print(": Menu de Criação de Grafo:\n")
-        print("  ( 1 ) Grafo Denso;")
-        print("  ( 2 ) Grafo Esparso.\n")
-        value = int(input(": Selecione o tipo do grafo a ser criado: .: "))
+        while True: #primeiro loop do usuario
+            value = int(0)
+            print(": Menu de Criação de Grafo:\n")
+            print("  ( 0 ) Retornar para o Menu Principal")
+            print("  ( 1 ) Grafo Denso;")
+            print("  ( 2 ) Grafo Esparso.\n")
 
-        if value == 1:
-            size = int(input("Insira o quantos vertices o Grafo Denso deverá ter:\n(ele irá assumir o tamanho n X n).\n.:"))
-            Grafer.criarGrafoDenso(size)
+            value = input(": Selecione o tipo do grafo a ser criado: .: ")
+            
+            try: #verifica input para filtrar strings
+                value = int(value)
 
-        elif value == 2:
-            Grafer.criarGrafoEsparso()
-        
+            except ValueError:
+                Grafer.clear()
+                print(" !ERRO! Insira um NUMERO! >:P\n")
+                value = int(-1)
+            #retorna para o menu
+            if value == 0: 
+                Grafer.clear()
+                break
+
+            #comeca criacao de grafo denso
+            elif value == 1: 
+                while True: #Segundo loop do usuario
+                    size = input(": Insira quantos vertices o Grafo Denso deverá ter: .: ")
+
+                    try: #checa se size é inteiro
+                        size =int(size)
+
+                        if size >= 0: #checa se é numero natural
+                            #cria o grafo e da append na lista de grafos geral
+                            listaDeGrafos.append(Grafer.criarGrafoDenso(size))
+
+                            Grafer.clear()
+                            print(": Grafo Denso criado!")
+                            print(": Confira ele no menu de grafos ja criados!\n")
+                            break
+
+                        else:
+                            Grafer.clear()
+                            print(" !ERRO! Insira um numero MAIOR QUE ZERO! >:P\n")
+
+                    except ValueError:
+                        Grafer.clear()
+                        print(" !ERRO! Insira um NUMERO INTEIRO! >:P\n")
+
+            #comeca criacao de grafo esparso
+            elif value == 2:
+                Grafer.criarGrafoEsparso()
+
+            #confere se maior q zero
+            elif value < 0:
+                Grafer.clear()
+                print(" !ERRO! Insira um numero MAIOR QUE ZERO! >:P\n")
+    
+    #menu para adicionar aresta
     def menuAdicionaAresta(self):
         return super().menuAdicionaAresta()
     
+    #menu que se comporta como uma funcao main
     def menuMaster ():
 
         listaDeGrafos = [[1, 2, 3], 2] #Lista de Grafos deve ser criada em memoria no inico do programa
