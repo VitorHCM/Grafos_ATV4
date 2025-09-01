@@ -20,7 +20,15 @@ class Grafer(Grafo):
         return grafo
     
     def criarGrafoEsparso(size):
-        return super().criarGrafoEsparso()
+        novoGrafoEsparso = {} 
+        counter = int(0)
+
+        while counter != size:
+            vertice = input(f'\n: Vértice {counter}: ')
+            novoGrafoEsparso.update({vertice: ''})
+            counter = counter +1
+
+        return novoGrafoEsparso
 
     #=================================================================#
     #Menus para o programa
@@ -32,45 +40,8 @@ class Grafer(Grafo):
         print(": Aluno: Vitor Hugo Campos ")
         print(": Matricula: 2312130182 \n")
 
-    #Menu principal porem com outro nome por que sim (preguica de mudar o nome p principal)
-    def menuIntro(listaDeGrafos):
-        Grafer.clear()
-
-        while True:
-
-            select = int(0)
-
-            #Grafer.clear() deve ser usado no final antes da mensagem de erro
-            Grafer.header()
-
-            print(": Bem vindo ao Programa de Manipulação de Grafos!")
-            print(": Menus:\n")        
-            print(f"  ( 1 ) Grafos já criados: {len(listaDeGrafos)} Grafos Criados") 
-            print("  ( 2 ) Criar novo Grafo;")
-            print("  ( 3 ) Adicionar Arestas a um Grafo;")
-            print("  ( 4 ) Funções entre Grafos;")
-            userIn = input("\n: Selecione o numero do menu desejado: .: ")
-            
-            try:
-                select = int(userIn)
-                if select <= 4 and select >= 1:
-                    break
-                else:
-                    Grafer.clear()
-                    print(" !ERRO! Selecione entre os menus DISPONIVEIS! >:P\n")
-
-            except ValueError:
-                Grafer.clear()
-                print(" !ERRO! Selecione um NÚMERO valido! >:P\n")
-
-        Grafer.clear()
-        return select
-            #retorna o numero do menu a ser acessado
-
     #menu que mostra os grafos ja criados
     def menuGrafosJaCriados(listaDeGrafos):
-
-        Grafer.header()
         
         print(": Menu de Grafos já criados")
 
@@ -135,7 +106,29 @@ class Grafer(Grafo):
 
             #comeca criacao de grafo esparso
             elif value == 2:
-                Grafer.criarGrafoEsparso()
+                while True: #Segundo loop do usuario
+                    size = input(": Insira quantos vertices o Grafo Esparso deverá ter: .: ")
+
+                    try: #checa se size é inteiro
+                        size =int(size)
+
+                        if size >= 0: #checa se é numero natural
+                            print('\n: Insira um nome para cada vertice do novo Grafo Esparso:')
+                            print(f': Numero de vertices a serem criados: {size}')
+                            listaDeGrafos.append(Grafer.criarGrafoEsparso(size))
+
+                            Grafer.clear()
+                            print(": Grafo Esparso criado!")
+                            print(": Confira ele no menu de grafos já criados!\n")
+                            break
+
+                        else:
+                            Grafer.clear()
+                            print(" !ERRO! Insira um numero MAIOR QUE ZERO! >:P\n")
+
+                    except ValueError:
+                        Grafer.clear()
+                        print(" !ERRO! Insira um NUMERO INTEIRO! >:P\n")
 
             #confere se maior q zero
             elif value < 0:
@@ -146,21 +139,80 @@ class Grafer(Grafo):
     def menuAdicionaAresta(self):
         return super().menuAdicionaAresta()
     
+    #Menu principal porem com outro nome por que sim (preguica de mudar o nome p principal)
+    def menuIntro(listaDeGrafos):
+        Grafer.clear()
+
+        while True:
+
+            select = int(0)
+
+            #Grafer.clear() deve ser usado no final antes da mensagem de erro
+            Grafer.header()
+
+            print(": Bem vindo ao Programa de Manipulação de Grafos!")
+            print(": Menus:\n")        
+            print(f"  ( 1 ) Grafos já criados: {len(listaDeGrafos)} Grafos Criados;") 
+            print("  ( 2 ) Criar novo Grafo;")
+            print("  ( 3 ) Adicionar Arestas a um Grafo;")
+            print("  ( 4 ) Funções entre Grafos;")
+            print("  ( 0 ) Sair do programa.")
+            userIn = input("\n: Selecione o numero do menu desejado: .: ")
+            
+            try:
+                select = int(userIn)
+                if select <= 4 and select >= 0:
+                    break
+                else:
+                    Grafer.clear()
+                    print(" !ERRO! Selecione entre os menus DISPONIVEIS! >:P\n")
+
+            except ValueError:
+                Grafer.clear()
+                print(" !ERRO! Selecione um NÚMERO valido! >:P\n")
+
+        Grafer.clear()
+        
+        #retorna o numero do menu a ser acessado
+        return select
+           
+
     #menu que se comporta como uma funcao main
     def menuMaster ():
 
-        listaDeGrafos = [[1, 2, 3], 2] #Lista de Grafos deve ser criada em memoria no inico do programa
+        listaDeGrafos = [] #Lista de Grafos deve ser criada em memoria no inico do programa
 
         while True:
-            select = Grafer.menuIntro(listaDeGrafos)        
+
+            #chama o menu principal e retorna um inteiro para acessar os outros menus
+            select = Grafer.menuIntro(listaDeGrafos) 
+
+            #menu de grafos em memoria       
             if select == 1:
                 Grafer.menuGrafosJaCriados(listaDeGrafos)
+            
+            #menu de criar grafo
             elif select == 2:
                 Grafer.menuCriaGrafo(listaDeGrafos)
+
+            #menu de eh hmmm
             elif select == 3:
-                print()
+                print('Under Construction')
+                
+            #vai ser um menu algum dia
             elif select == 4:
-                print()
+                print('Under Construction')
+
+            #sair do programa
+            elif select == 0:
+                print("! AVISO !\n: Você está prestes a fechar o programa!")
+                print(": Todo o progresso realizado será perdido caso você prossiga.")
+                print(": Você tem certeza de que deseja fechar o programa?\n")
+                areUsure = input('  ( 0 ) Não (retorna ao menu principal)\n  ( 1 ) Sim (termina o programa)\n\n .: ')
+                if areUsure == '1': # I had a pretty interesting day !
+                    Grafer.clear()
+                    print(": Programa terminado com sucesso!\n: Goodbye World!")
+                    break
 
     
     #=================================================================#

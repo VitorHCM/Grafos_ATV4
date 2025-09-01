@@ -13,6 +13,7 @@ clear()
 
 grafos = []
 
+e0 = {}
 g0 = []
 g1 = {'a':['b','c'], 'b': ['c'], 'c': ['a']}
 g2 = {1: [2, 3], 2: [1], 3: [2]}
@@ -34,3 +35,25 @@ grafos.append(g2)
 grafos.append(G3)
 for i in range(len(grafos)):
     print(f"Grafo {i}",grafos[i])
+
+print("=======================================")
+
+print(e0)
+vertice = input('bota o nome do vertice ')
+
+e0.update({vertice: 0})
+
+print(e0)
+
+counter = int(0)
+
+while counter != 3:
+     
+    vertice = []
+    vertice = input('bota o nome do vertice ')
+
+    e0.update({vertice: ''})
+    
+    counter = counter +1
+
+print(e0)
