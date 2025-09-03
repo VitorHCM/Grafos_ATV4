@@ -8,6 +8,26 @@ def clear():
     # For Linux / Mac
     else:
         os.system("clear")
+#$=============================================
+#Funcao para inputs que devem ser inteiros:
+    def inTryInt(inputRaw ):
+
+    print("func para verificar input inteiro: ")
+     
+    try:
+        #tenta converter inputRaw em int
+        inputInt = int(inputRaw)
+    except ValueError:
+        print("Entre um valor inteiro;")
+        return ""
+    return inputInt
+#=============================================
+inputRaw = input("entre um valor inteiro: ")
+inTryInt(inputRaw)
+print("valor inputado: ", inputRaw)
+
+
+
 
 clear()
 
