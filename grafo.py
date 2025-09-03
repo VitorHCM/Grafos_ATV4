@@ -3,6 +3,12 @@ import os #para poder dar clear no terminal
 
 class Grafer(Grafo):
 
+    #codigos de erros convencionados por mim
+    #   quando deve ser inteiro: "valueError1"
+
+    #=================================================================#
+    #Metodos para utilidades:
+
     def clear(): #funcao clear() para limpar o terminal
 
         # For Windows
@@ -11,6 +17,23 @@ class Grafer(Grafo):
         # For Linux / Mac
         else:
             os.system("clear")
+
+    def inputInt(inputRaw):
+
+        #tenta converter inputRaw em int
+        try:
+            inputInt = int(inputRaw)
+
+        except ValueError:
+            Grafer.clear()
+            print("! ERRO ! Insira um numero INTEIRO! >:P\n")
+            errorCode = "valueError1"
+
+            #retorna codigo de erro para ser tratado
+            return errorCode
+        
+        #retorna input em int
+        return inputInt
 
     #=================================================================#
     #Metodos para Criar Grafos
@@ -35,6 +58,7 @@ class Grafer(Grafo):
 
     #header com instituicao e aluno
     def header():
+        print("[ Menu Principal ]\n")
         print(": CS: IESB ")
         print(": Atividades de Grafos ")
         print(": Aluno: Vitor Hugo Campos ")
@@ -43,7 +67,7 @@ class Grafer(Grafo):
     #menu que mostra os grafos ja criados
     def menuGrafosJaCriados(listaDeGrafos):
         
-        print(": Menu de Grafos já criados")
+        print("[ Menu de Grafos já criados ]")
 
         print(f": Numero de Grafos em memória: {len(listaDeGrafos)}\n")
         for i in range(len(listaDeGrafos)):
@@ -60,80 +84,85 @@ class Grafer(Grafo):
     def menuCriaGrafo(listaDeGrafos):
         while True: #primeiro loop do usuario
             value = int(0)
-            print(": Menu de Criação de Grafo:\n")
+            print("[ Menu de Criação de Grafo ]\n")
             print("  ( 0 ) Retornar para o Menu Principal")
             print("  ( 1 ) Grafo Denso;")
             print("  ( 2 ) Grafo Esparso.\n")
 
             value = input(": Selecione o tipo do grafo a ser criado: .: ")
             
-            try: #verifica input para filtrar strings
-                value = int(value)
+            #checa se inteiro
+            value = Grafer.inputInt(value)
+            
+            if value != "valueError1":
 
-            except ValueError:
-                Grafer.clear()
-                print(" !ERRO! Insira um NUMERO! >:P\n")
-                value = int(-1)
-            #retorna para o menu
-            if value == 0: 
-                Grafer.clear()
-                break
+                #retorna para o menu
+                if value == 0: 
+                    Grafer.clear()
+                    break
 
-            #comeca criacao de grafo denso
-            elif value == 1: 
-                while True: #Segundo loop do usuario
-                    size = input(": Insira quantos vertices o Grafo Denso deverá ter: .: ")
+                #comeca criacao de grafo denso
+                elif value == 1: 
+                    while True: #Segundo loop do usuario
+                        print("\n: Insira quantos vertices o Grafo Denso deverá ter:")
+                        size = input(": Para cancelar a operação digite SAIR e pressione ENTER;\n\n.: ")
 
-                    try: #checa se size é inteiro
-                        size =int(size)
+                        if size != "SAIR":
+                        #confere se input é inteiro e retorna ou errorCode ou o valor em int
+                            size = Grafer.inputInt(size)
 
-                        if size >= 0: #checa se é numero natural
-                            #cria o grafo e da append na lista de grafos geral
-                            listaDeGrafos.append(Grafer.criarGrafoDenso(size))
+                            if size != "valueError1":
 
-                            Grafer.clear()
-                            print(": Grafo Denso criado!")
-                            print(": Confira ele no menu de grafos ja criados!\n")
-                            break
+                                if size >= 0: #checa se é numero natural
+                                    #cria o grafo e da append na lista de grafos geral
+                                    listaDeGrafos.append(Grafer.criarGrafoDenso(size))
 
+                                    Grafer.clear()
+                                    print(": Grafo Denso criado!")
+                                    print(": Confira ele no menu de grafos ja criados!\n")
+                                    break
+
+                                else:
+                                    Grafer.clear()
+                                    print(" !ERRO! Insira um numero MAIOR QUE ZERO! >:P\n")
                         else:
                             Grafer.clear()
-                            print(" !ERRO! Insira um numero MAIOR QUE ZERO! >:P\n")
-
-                    except ValueError:
-                        Grafer.clear()
-                        print(" !ERRO! Insira um NUMERO INTEIRO! >:P\n")
-
-            #comeca criacao de grafo esparso
-            elif value == 2:
-                while True: #Segundo loop do usuario
-                    size = input(": Insira quantos vertices o Grafo Esparso deverá ter: .: ")
-
-                    try: #checa se size é inteiro
-                        size =int(size)
-
-                        if size >= 0: #checa se é numero natural
-                            print('\n: Insira um nome para cada vertice do novo Grafo Esparso:')
-                            print(f': Numero de vertices a serem criados: {size}')
-                            listaDeGrafos.append(Grafer.criarGrafoEsparso(size))
-
-                            Grafer.clear()
-                            print(": Grafo Esparso criado!")
-                            print(": Confira ele no menu de grafos já criados!\n")
+                            print(": Operação cancelada!\n")
                             break
 
+
+                #comeca criacao de grafo esparso
+                elif value == 2:
+                    while True: #Segundo loop do usuario
+
+                        print("\n: Insira quantos vertices o Grafo Esparso deverá ter:")
+                        size = input(": Para cancelar a operação digite SAIR e pressione ENTER;\n\n.: ")
+                        if size != "SAIR":
+                            size = Grafer.inputInt(size)
+
+                            if size != "valueError1":  
+                                if size >= 0: #checa se é numero natural
+                                    print('\n: Agora insira um nome para cada vertice do novo Grafo Esparso:')
+                                    print(f': Numero de vertices a serem criados: {size}')
+                                    listaDeGrafos.append(Grafer.criarGrafoEsparso(size))
+
+                                    Grafer.clear()
+                                    print(": Grafo Esparso criado!")
+                                    print(": Confira ele no menu de grafos já criados!\n")
+                                    break
+
+                                else:
+                                    Grafer.clear()
+                                    print(" !ERRO! Insira um numero MAIOR QUE ZERO! >:P\n")
                         else:
                             Grafer.clear()
-                            print(" !ERRO! Insira um numero MAIOR QUE ZERO! >:P\n")
+                            print(": Operação cancelada!\n")
+                            break
 
-                    except ValueError:
-                        Grafer.clear()
-                        print(" !ERRO! Insira um NUMERO INTEIRO! >:P\n")
-
-            #confere se maior q zero
-            elif value < 0:
-                Grafer.clear()
-                print(" !ERRO! Insira um numero MAIOR QUE ZERO! >:P\n")
+                #confere se maior q zero
+                elif value < 0:
+                    Grafer.clear()
+                    print(" !ERRO! Insira um numero MAIOR QUE ZERO! >:P\n")
     
     #menu para adicionar aresta
     def menuAdicionaAresta(self):
@@ -159,17 +188,14 @@ class Grafer(Grafo):
             print("  ( 0 ) Sair do programa.")
             userIn = input("\n: Selecione o numero do menu desejado: .: ")
             
-            try:
-                select = int(userIn)
+            select = Grafer.inputInt(userIn)
+
+            if select != "valueError1":
                 if select <= 4 and select >= 0:
                     break
                 else:
                     Grafer.clear()
                     print(" !ERRO! Selecione entre os menus DISPONIVEIS! >:P\n")
-
-            except ValueError:
-                Grafer.clear()
-                print(" !ERRO! Selecione um NÚMERO valido! >:P\n")
 
         Grafer.clear()
         
