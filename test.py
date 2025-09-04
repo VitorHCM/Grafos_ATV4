@@ -12,19 +12,17 @@ def clear():
 #Funcao para inputs que devem ser inteiros:
     def inTryInt(inputRaw ):
 
-    print("func para verificar input inteiro: ")
-     
-    try:
-        #tenta converter inputRaw em int
-        inputInt = int(inputRaw)
-    except ValueError:
-        print("Entre um valor inteiro;")
-        return ""
-    return inputInt
+        print("func para verificar input inteiro: ")
+        
+        try:
+            #tenta converter inputRaw em int
+            inputInt = int(inputRaw)
+        except ValueError:
+            print("Entre um valor inteiro;")
+            return ""
+        return inputInt
 #=============================================
-inputRaw = input("entre um valor inteiro: ")
-inTryInt(inputRaw)
-print("valor inputado: ", inputRaw)
+
 
 
 
@@ -59,13 +57,13 @@ for i in range(len(grafos)):
 print("=======================================")
 
 print(e0)
-vertice = input('bota o nome do vertice ')
+#vertice = input('bota o nome do vertice ')
 
-e0.update({vertice: 0})
+#e0.update({vertice: 0})
 
 print(e0)
 
-counter = int(0)
+counter = int(3)
 
 while counter != 3:
      
@@ -77,3 +75,21 @@ while counter != 3:
     counter = counter +1
 
 print(e0)
+
+
+
+#for i, element in enumerate(my_list):
+#    if isinstance(element, dict):
+#        print(f"Index {i} contains a dictionary → keys: {list(element.keys())}")
+#    elif isinstance(element, list):
+#        print(f"Index {i} contains a list → values: {element}")
+#    else:
+#        print(f"Index {i} contains something else → {element}")
+for i, element in enumerate(grafos):
+    
+    if isinstance(element, dict):
+        print(f"Index {i} contains a dictionary → keys: {list(element.keys())}")
+    elif isinstance(element, list):
+        print(f"Index {i} contains a list → values: {element}")
+    else:
+        print(f"Index {i} contains something else → {element}")
