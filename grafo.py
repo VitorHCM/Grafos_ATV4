@@ -226,45 +226,50 @@ class Grafer(Grafo):
                                 #checa se esta no escopo da listaDEGrafos
                                 if indexGrafo >= 0 and indexGrafo < len(listaDeGrafos):
                                     while True: #Terceiro loop do usuario
-                                        Grafer.clear()
 
-                                        #checa se grafo no indice e uma lista
+                                        #checa se grafo no indice é uma lista
                                         if isinstance(listaDeGrafos[indexGrafo], list):
-                                            print(f"[ Adicionar Aresta no Grafo {indexGrafo} ]\n")
-                                            
-                                            #printa o grafo pro usuario
-                                            print(f"  Grafo {indexGrafo}:  ", end="")
-                                            for x in range(len(listaDeGrafos[indexGrafo])): #printa vertices em cima
-                                                print(f"V{x} ", end="")
-                                            print("")
-                                            for j in range(len(listaDeGrafos[indexGrafo])): #printa vertices na esquerda
-                                                print (f"       V{j}: ",listaDeGrafos[indexGrafo][j])
-                                            print("")
-                                            
-                                            print("!Aviso! Insira apenas o numero do Vertice desejado\n")
-                                            V1 = input(": Escolha o primeiro vertice: .: ")
-                                            V1 = Grafer.inputInt(V1)
 
-                                            if V1 != "valueError1":
-                                                if V1 >= 0 and V1 <= len(listaDeGrafos[indexGrafo]): #caso input valido
-                                                    V2 = input(": Escolha o segundo vertice para realizar a aresta: .: ")
-                                                    V2 = Grafer.inputInt(V2)
-                                                    if V2 != "valueError1":
-                                                        if V2 >= 0 and V1 <= len(listaDeGrafos[indexGrafo]): #caso input valido
-                                                            print("")
+                                                print(f"[ Adicionar Aresta no Grafo {indexGrafo} ]\n")
+                                                
+                                                #printa o grafo pro usuario
+                                                print(f"  Grafo {indexGrafo}:  ", end="")
+                                                for x in range(len(listaDeGrafos[indexGrafo])): #printa vertices em cima
+                                                    print(f"V{x} ", end="")
+                                                print("")
+                                                for j in range(len(listaDeGrafos[indexGrafo])): #printa vertices na esquerda
+                                                    print (f"       V{j}: ",listaDeGrafos[indexGrafo][j])
+                                                print("")
+                                                
+                                                print("!Aviso! Insira apenas o numero do Vertice desejado!")
+                                                print(": Para finalizar a operação digite SAIR e pressione ENTER;\n")
+                                                V1 = input(": Escolha o primeiro vertice: .: ")
+                                                if V1 == "SAIR":
+                                                    Grafer.clear()
+                                                    print(": Adição de aresta finalizada!")
+                                                    break
+                                                V1 = Grafer.inputInt(V1)
 
-                                                            listaDeGrafos[indexGrafo][V1][V2] = 1
+                                                if V1 != "valueError1" and V1 < len(listaDeGrafos[indexGrafo]) and V1 >= 0:
+                                                    if V1 >= 0 and V1 <= len(listaDeGrafos[indexGrafo]): #caso input valido
+                                                        V2 = input(": Escolha o segundo vertice para realizar a aresta: .: ")
+                                                        V2 = Grafer.inputInt(V2)
+                                                        if V2 != "valueError1":
+                                                            if V2 >= 0 and V2 <= len(listaDeGrafos[indexGrafo]): #caso input valido
+                                                                print("")
 
-                                                            print(listaDeGrafos[indexGrafo][V1][V2])
-                                                            input("")
-                                                            #Executar adicao de aresta
-                                                            #n sei como ainda to com sonoooo
-                                                        else:
-                                                            Grafer.clear()
-                                                            print("!ERRO! Insira um vertice valido >:p")
+                                                                listaDeGrafos[indexGrafo][V1][V2] = 1
+
+                                                                Grafer.clear()
+                                                                print(f": Aresta entre V{V1} e V{V2} adicionada!\n")
+                                                                
+
+                                                            else:
+                                                                Grafer.clear()
+                                                                print("!ERRO! Insira um vertice valido >:p\n")
                                                 else:
                                                     Grafer.clear()
-                                                    print("!ERRO! Insira um vertice valido >:p")
+                                                    print("!ERRO! Insira um vertice valido >:p\n")
 
 
 
@@ -299,7 +304,7 @@ class Grafer(Grafo):
             print("  ( 3 ) Adicionar Arestas a um Grafo;")
             print("  ( 4 ) Funções entre Grafos;")
             print("  ( 0 ) Sair do programa.")
-            userIn = input("\n: Selecione o numero do menu desejado: .: ")
+            userIn = input("\n: Insira o numero do menu desejado: .: ")
             
             select = Grafer.inputInt(userIn)
 
@@ -320,7 +325,9 @@ class Grafer(Grafo):
     def menuMaster ():
 
         listaDeGrafos = [] #Lista de Grafos deve ser criada em memoria no inico do programa
-        g0 = []
+        g0 = [[0 for _ in range(3)] for _ in range(3)]
+        for i in range (len(g0)):
+            g0[i][i] = 0        
         g1 = {'a':['b','c'], 'b': ['c'], 'c': ['a']}
         g2 = {1: [2, 3], 2: [1], 3: [2]}
         listaDeGrafos.append(g0)

@@ -37,7 +37,7 @@ g1 = {'a':['b','c'], 'b': ['c'], 'c': ['a']}
 g2 = {1: [2, 3], 2: [1], 3: [2]}
 G3 = [[0 for _ in range(3)] for _ in range(3)]
 for i in range (len(G3)):
-    G3[i][i] = 1
+    G3[i][i] = 0
 
 print(G3)
 
