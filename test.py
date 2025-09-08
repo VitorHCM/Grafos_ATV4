@@ -93,3 +93,10 @@ for i, element in enumerate(grafos):
         print(f"Index {i} contains a list → values: {element}")
     else:
         print(f"Index {i} contains something else → {element}")
+print("\n\n\n")
+sumCounter = int(0)
+for i in g1:
+    print(f"len of i: {len(g1[i])}")
+    counter = len(i)
+    sumCounter = sumCounter + counter
+    print(f"tamanho do indice: {i}, tamanho do sum: {sumCounter}")
