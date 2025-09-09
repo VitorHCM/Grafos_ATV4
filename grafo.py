@@ -448,12 +448,12 @@ class Grafer(Grafo):
             value = int(0)
             print("[ Menu de Funções entre Grafos ]\n")
             print("  ( 0 ) Retornar para o Menu Principal")
-            print("  ( 1 ) Atividade 4")
-            print("  ( 1 ) Atividade 5")
-            print("  ( 1 ) Atividade 6")
-            print("  ( 1 ) Atividade 7")
-            print("  ( 1 ) Atividade 9")
-            print("  ( 2 ) Grafo Esparso.\n")
+            print("  ( 4 ) Atividade 4: #STATUS: DONE")
+            print("  ( 5 ) Atividade 5: #STATUS: DONE")
+            print("  ( 6 ) Atividade 6: #STATUS: to do")
+            print("  ( 7 ) Atividade 7: #STATUS: to do")
+            print("  ( 9 ) Atividade 9: #STATUS: to do")
+            print("  ( 6 ) Grafo Esparso.\n")
 
             value = input(": Selecione o tipo do grafo a ser criado: .: ")
             
@@ -466,25 +466,28 @@ class Grafer(Grafo):
                 if value == 0: 
                     Grafer.clear()
                     break
-                #limite de menus
-                if value >2 or value < 0:
+                #conjunto de menus
+                valoresDisponiveis = [0, 4, 5, 6, 7, 9]
+                if value not in valoresDisponiveis:
                     Grafer.clear()
                     print("!ERRO! Insira um numero valido! >:P\n")
                 
                 #=================[ Atividade 4 ]======================
-                elif value == 1: 
+                #STATUS: DONE
+                #se possivel implementar para grafos esparsos tambem
+                elif value == 4: 
                     Grafer.clear()
                     while True: #Segundo loop do usuario
                         
                         print("[ Atividade 4 ]\n")
-                        print("  ( 0 ) Retornar para o Menu Principal")
-                        print("  ( 1 ) numero_de_vertices")
-                        print("  ( 2 ) numero_de_arestas")
-                        print("  ( 3 ) sequencia_de_graus")
-                        print("  ( 4 ) adicionar_aresta")
-                        print("  ( 5 ) remover_aresta")
+                        print("  ( 0 ) Retornar")
+                        print("  ( 1 ) numero_de_vertices") #STATUS: DONE
+                        print("  ( 2 ) numero_de_arestas") #STATUS: DONE
+                        print("  ( 3 ) sequencia_de_graus") #STATUS: DONE
+                        print("  ( 4 ) adicionar_aresta") #STATUS: DONE
+                        print("  ( 5 ) remover_aresta") #STATUS: DONE
                         #checa se inteiro
-                        select = input(": Selecione a atividade: .: ")
+                        select = input("\n: Selecione a atividade: .: ")
                         select = Grafer.inputInt(select)
 
                         #retorna para menu anterior
@@ -521,19 +524,34 @@ class Grafer(Grafo):
                                 grafoEscolha = Grafer.inputInt(grafoEscolha)
                                 Grafer.sequencia_de_graus(listaDeGrafos, grafoEscolha)
             
+                            #Adicionar aresta
+                            elif select == 4 or select == 5:
+                                Grafer.clear()
+                                print(": Veja: Adicionar aresta e Remover Aresta no Menu Principal;\n")
+                                input(": Para continuar, pressione [ENTER]")
+                                Grafer.clear()
+                            
+                            #imprimir
+                            elif select == 6:
+                                Grafer.clear()
+                                print(": Veja: Imprimir no Grafos ja Criados no Menu Principal;\n")
+                                input(": Para continuar, pressione [ENTER]")
+                                Grafer.clear()    
                 
                 #=================[ Atividade 5 ]======================
-                elif value == 2: 
+                #STATUS: DONE
+                #se possivel implementar para grafos esparsos tambem
+                elif value == 5: 
                     Grafer.clear()
                     while True: #Segundo loop do usuario
                         
                         print("[ Atividade 5 ]\n")
                         print("  ( 0 ) Retornar para o Menu Principal")
-                        print("  ( 1 ) is_simples")
-                        print("  ( 2 ) is_nulo")
-                        print("  ( 3 ) is_completo")
+                        print("  ( 1 ) is_simples") #STATUS: DONE
+                        print("  ( 2 ) is_nulo") #STATUS: DONE
+                        print("  ( 3 ) is_completo") #STATUS: DONE
                         #checa se inteiro
-                        select = input(": Selecione a atividade: .: ")
+                        select = input("\n: Selecione a atividade: .: ")
                         select = Grafer.inputInt(select)
 
                         #retorna para menu anterior
@@ -542,28 +560,49 @@ class Grafer(Grafo):
                                 Grafer.clear()
                                 break
                             #limite de opcoes
-                            if select >5 or select < 0:
+                            if select >3 or select < 0:
                                 Grafer.clear()
                                 print("!ERRO! Insira um numero valido! >:P\n")
                             
-                            #is simples
+                            #is_simples
                             elif select == 1:
-                                print("")
+                                print(": Escolha o grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)}")
+                                grafoEscolha = input("  .: ")
+                                grafoEscolha = Grafer.inputInt(grafoEscolha)
+                                Grafer.is_simples(listaDeGrafos, grafoEscolha)
 
+                            #is_nulo
+                            elif select == 2:
+                                print(": Escolha o grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)}")
+                                grafoEscolha = input("  .: ")
+                                grafoEscolha = Grafer.inputInt(grafoEscolha)
+                                Grafer.is_nulo(listaDeGrafos, grafoEscolha)
+                
+                            #is_completo
+                            elif select == 3:
+                                print(": Escolha o grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)-1}")
+                                grafoEscolha = input("  .: ")
+                                grafoEscolha = Grafer.inputInt(grafoEscolha)
+                                Grafer.is_completo(listaDeGrafos, grafoEscolha)
+            
                 #=================[ Atividade 6 ]======================
-                elif value == 3: 
+                #STATUS: TO DO
+                elif value == 6: 
                     Grafer.clear()
                     while True: #Segundo loop do usuario
                         
                         print("[ Atividade 6 ]\n")
                         print("  ( 0 ) Retornar para o Menu Principal")
-                        print("  ( 1 ) get_vertices")
-                        print("  ( 2 ) get_arestas")
-                        print("  ( 3 ) is_subgrafo")
-                        print("  ( 4 ) is_subgrafo_gerador")
-                        print("  ( 5 ) is_subgrafo_induzido")
+                        print("  ( 1 ) get_vertices") #STATUS: DONE
+                        print("  ( 2 ) get_arestas") #STATUS: DONE
+                        print("  ( 3 ) is_subgrafo") #STATUS:
+                        print("  ( 4 ) is_subgrafo_gerador") #STATUS:
+                        print("  ( 5 ) is_subgrafo_induzido") #STATUS:
                         #checa se inteiro
-                        select = input(": Selecione a atividade: .: ")
+                        select = input("\n: Selecione a atividade: .: ")
                         select = Grafer.inputInt(select)
 
                         #retorna para menu anterior
@@ -572,24 +611,66 @@ class Grafer(Grafo):
                                 Grafer.clear()
                                 break
                             #limite de opcoes
-                            if select >5 or select < 0:
+                            if select >3 or select < 0:
                                 Grafer.clear()
                                 print("!ERRO! Insira um numero valido! >:P\n")
                             
-                            #numero de vertices
+                            #get_vertices
                             elif select == 1:
-                                print("")
+                                print(": Escolha o grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)}")
+                                grafoEscolha = input("  .: ")
+                                grafoEscolha = Grafer.inputInt(grafoEscolha)
+                                Grafer.get_vertices(listaDeGrafos, grafoEscolha)
 
+                            #get_arestas
+                            elif select == 2:
+                                print(": Escolha o grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)}")
+                                grafoEscolha = input("  .: ")
+                                grafoEscolha = Grafer.inputInt(grafoEscolha)
+                                Grafer.get_arestas(listaDeGrafos, grafoEscolha)
+                
+                            #is_subgrafo
+                            elif select == 3:
+                                print(": Escolha o grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)-1}")
+                                grafoEscolha = input("  .: ")
+                                grafoEscolha = Grafer.inputInt(grafoEscolha)
+                                
+                                print("\n: Escolha o sub-grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)-1}")
+                                subGrafoEscolha = input("  .: ")
+                                subGrafoEscolha = Grafer.inputInt(subGrafoEscolha)
+                                Grafer.is_subgrafo(listaDeGrafos, grafoEscolha, subGrafoEscolha)
+            
+                            #is_subgrafo_gerador
+                            elif select == 4:
+                                print(": Escolha o grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)}")
+                                grafoEscolha = input("  .: ")
+                                grafoEscolha = Grafer.inputInt(grafoEscolha)
+                                Grafer.is_subgrafo_gerador(listaDeGrafos, grafoEscolha)
+
+                            #is_subgrafo_induzido
+                            elif select == 5:
+                                print(": Escolha o grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)}")
+                                grafoEscolha = input("  .: ")
+                                grafoEscolha = Grafer.inputInt(grafoEscolha)
+                                Grafer.is_subgrafo_induzido(listaDeGrafos, grafoEscolha)
+                
                 #=================[ Atividade 7 ]======================
-                elif value == 4: 
+                #STATUS: TO DO
+                elif value == 7: 
                     Grafer.clear()
                     while True: #Segundo loop do usuario
                         
                         print("[ Atividade 7 ]\n")
                         print("  ( 0 ) Retornar para o Menu Principal")
-                        print("  ( 1 ) is_isomorfo")
+                        print("  ( 1 ) is_isomorfo") #STATUS:
                         #checa se inteiro
-                        select = input(": Selecione a atividade: .: ")
+                        select = input("\n: Selecione a atividade: .: ")
                         select = Grafer.inputInt(select)
 
                         #retorna para menu anterior
@@ -598,16 +679,21 @@ class Grafer(Grafo):
                                 Grafer.clear()
                                 break
                             #limite de opcoes
-                            if select >5 or select < 0:
+                            if select >3 or select < 0:
                                 Grafer.clear()
                                 print("!ERRO! Insira um numero valido! >:P\n")
                             
-                            #numero de vertices
+                            #is_isomorfo
                             elif select == 1:
-                                print("")
+                                print(": Escolha o grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)}")
+                                grafoEscolha = input("  .: ")
+                                grafoEscolha = Grafer.inputInt(grafoEscolha)
+                                Grafer.is_isomorfo(listaDeGrafos, grafoEscolha)
 
                 #=================[ Atividade 9 ]======================
-                elif value == 5: 
+                #STATUS: TO DO
+                elif value == 9: 
                     Grafer.clear()
                     while True: #Segundo loop do usuario
                         
@@ -642,7 +728,7 @@ class Grafer(Grafo):
                         
                         print("[ Menu Especifico para Atividades ]\n")
 
-    #Menu principal porem com outro nome por que sim (preguica de mudar o nome p principal)
+    #Menu PRINCIPAL porem com outro nome por que sim (preguica de mudar o nome p principal)
     def menuIntro(listaDeGrafos):
         Grafer.clear()
 
@@ -657,8 +743,8 @@ class Grafer(Grafo):
             print(": Menus:\n")        
             print(f"  ( 1 ) Grafos já criados: {len(listaDeGrafos)} Grafos Criados;") 
             print("  ( 2 ) Criar novo Grafo;")
-            print("  ( 3 ) Adicionar Arestas a um Grafo;")
-            print("  ( 4 ) Funções entre Grafos [ Atividades ];")
+            print("  ( 3 ) Adicionar e Remover Arestas;")
+            print("  ( 4 ) Funções entre Grafos >>>[ Atividades ]<<<;")
             print("  ( 0 ) Sair do programa.")
             userIn = input("\n: Insira o numero do menu desejado: .: ")
             
@@ -676,7 +762,6 @@ class Grafer(Grafo):
         #retorna o numero do menu a ser acessado
         return select
            
-
     #menu que se comporta como uma funcao main
     def menuMaster ():
 
@@ -685,7 +770,7 @@ class Grafer(Grafo):
         for i in range (len(g0)):
             g0[i][i] = 1        
         g1 = {'a':['b','c'], 'b': ['c'], 'c': ['a']}
-        g2 = {1: [2, 3], 2: [1], 3: [2]}
+        g2 = {'a':['b','c'], 'b': ['c']}
         listaDeGrafos.append(g0)
         listaDeGrafos.append(g1)
         listaDeGrafos.append(g2)
@@ -722,10 +807,9 @@ class Grafer(Grafo):
                     print(": Programa terminado com sucesso!\n: Goodbye World!")
                     break
 
-    
-    #=================================================================#
+    #=====================================[ ATIVIDADES ]=================================================================
     #----------------------------------------------------------#
-    #Atividade 4:
+    #Atividade 4: DONE
 
     def numero_de_vertices(grafo, index):
         Grafer.clear()
@@ -751,20 +835,11 @@ class Grafer(Grafo):
             print(f": Grafo {index} possui {sumNumItens} arestas.\n") #retorna o numero de arestas
 
     def sequencia_de_graus(grafo, index):
-
-        graus = [] 
-        counter = int(0)
-        counter2 = int(0)
-
-        for i in range(len(grafo[index])):
-            for j in range(len(grafo[index][i])):
-                if grafo[index][i][j] == 1:
-                    counter = counter + 1
-            graus[counter2] = counter
-            counter = 0
-            counter2 = counter2 + 1
-
-        return print(graus) #retorna a sequencia de graus
+        Grafer.clear()
+        if isinstance(grafo[index], dict):
+            print(": Este metodo suporta apenas LISTAS")
+            return
+        print(sorted([sum(row) for row in grafo[index]])) #retorna a sequencia de graus
     
     def adicionar_aresta(grafo, u, v):
 
@@ -805,82 +880,157 @@ class Grafer(Grafo):
                 print("")
 
     #----------------------------------------------------------#
-    #Atividade 5 - Grafo Simples - Nulo - Completo
+    #Atividade 5 - Grafo Simples - Nulo - Completo: DONE
 
-    def is_simples(self):
+    def is_simples(self, index):
     #Um grafo simples NAO possui loops e nao possui mais de uma aresta entre dois vertices
     #Assim, deve-se checar duas condicoes, se ele possui loops e se possui mais de uma aresta
     #entre dois vertices
+        Grafer.clear()
+        if isinstance(self[index], dict):
+            print(": Este metodo suporta apenas LISTAS")
+            return 0
+        else:
+            for i in range(len (self[index])):
+                if self[index][i][i] == 1:
+                    print(f"O grafo não é simples por conta do loop no vertice: {i}")
+                    return 0
+            Grafer.clear()    
+            print(": O grafo é simples.")
+            return 1
+                #como o grafo esta em forma de matriz, ele não suporta mais de uma aresta entre dois
+                #vertices, mas caso ele suportasse, teria que percorrer cada vertice e checar se ele
+                #repete mais de uma vez arestas com um outro vertice
 
-        for i in range(len (self)):
-            if self[i][i] == 1:
-                print(f"O grafo não é simples por conta do loop no vertice: {Grafer.dict(i)}")
-                return 0
-            
-        print("O grafo é simples.")
-        return 1
-            #como o grafo esta em forma de matriz, ele não suporta mais de uma aresta entre dois
-            #vertices, mas caso ele suportasse, teria que percorrer cada vertice e checar se ele
-            #repete mais de uma vez arestas com um outro vertice
-
-    def is_nulo(self):
+    def is_nulo(self, index):
     #Um grafo nulo é aquele que possui vertices mas nao ha nenhuma aresta
     #Logo, deve-se percorrer a matriz checando se ha alguma aresta
     #Vale detalhar-se que um grafo nulo pode ser um grafo simples
-        for i in range(len(self)):
-            for j in range(len(self[i])):
-                if self[i][j] == 1:
-                    print(f"O grafo não é nulo pois há uma aresta entre {Grafer.dict(i)} e {Grafer.dict(j)}.")
-                    return
-                
-        print("O grafo é nulo.")
-        return
+        Grafer.clear()
+        if isinstance(self[index], dict):
+            print(": Este metodo suporta apenas LISTAS")
+            return
+        else:
+            for i in range(len(self[index])):
+                for j in range(len(self[index][i])):
+                    if self[index][i][j] == 1:
+                        Grafer.clear()
+                        print(f"O grafo {index} não é nulo pois há uma aresta entre {i} e {j}.\n")
+                        return
+            Grafer.clear()
+            print(f": O grafo {index} é nulo.\n")
+            return
     
-    def is_completo(self):
+    def is_completo(self, index):
     #Um grafo completo é um grafo simples em que todo vértice é adjacente a todos os outros vértices.
     #assim, deve-se primeiro ver se ele é simples para depois ver se ele possui algum vertice que não
     #se conecta com o restantes dos vertices
-       
-        seGrafoSimples = int(Grafer.is_simples(self))
-        if seGrafoSimples == 0:
-            print("O grafo não é completo pois ele não é simples.")
-
-        for i in range (len(self)):
-            for j in range(len(self[i])):
-                if self[i][j] == 0 and i != j:
-                    print(f"O grafo não é completo pois o vertice {Grafer.dict(i)} não faz aresta com {Grafer.dict(j)}.")
-                    return
-                
-        print("O grafo é completo.")
-        return 
+        Grafer.clear()
+        if isinstance(self[index], dict):
+            print(": Este metodo suporta apenas LISTAS")
+            return
+        else:
+            seGrafoSimples = int(Grafer.is_simples(self, index))
+            if seGrafoSimples == 0:
+                Grafer.clear()
+                print(": O grafo não é completo pois ele não é simples.")
+                return
+            else:        
+                for i in range (len(self[index])):
+                    for j in range(len(self[index][i])):
+                        if self[index][i][j] == 0 and i != j:
+                            Grafer.clear()
+                            print(f": O grafo não é completo pois o vertice {i} não faz aresta com {j}.")
+                            return
+                Grafer.clear()        
+                print(": O grafo é completo.")
+                return 
     
     #----------------------------------------------------------#
     #Atividade 6: Subgrafos
 
-    def get_vertices(self):
-        verticesDoGrafo = []
-        for i in self:
-            verticesDoGrafo.append(i)
-        return verticesDoGrafo
+    def get_vertices(self, index):
+        Grafer.clear()
+        if isinstance(self[index], list):     
+            print(f": Vertices do grafo {index}: ", end="")
+            for i in range(len(self[index])):
+                print(f"{i}",end =" ")
+
+        elif isinstance(self[index], dict):
+            print(f": Vertices do grafo {index}: ", end="")
+            for i in self[index]:
+                print(f"{i}",end =" ")
+
+        print("")
     
-    def get_arestas(self):
-        arestasDoGrafo = []
-        for i in self:
-            arestasDoGrafo.append(self[i])
-        return arestasDoGrafo
+    def get_arestas(self, index):
+        Grafer.clear()
+        arestas = []
+        if isinstance(self[index], list):
+            for i in range(len(self[index])):
+                print(f"  {i}: {self[index][i]}")
+                arestas.append(self[index][i])    
+        elif isinstance(self[index], dict):
+            for i in self[index]:
+                print(f"  {i}: {self[index][i]}")
+                arestas.append(self[index][i])    
+
+        print("")
+        return arestas
     
-    def is_subgrafo(subGrafo, grafo):
+    def is_subgrafo(listaDeGrafos, grafo, subGrafo):
     #um subgrafo é um grafo que pode ser formado com os vertices de um grafo maior,
     #assim como todas as arestas
     #logo, cada vertice de um subgrafo deve existir no grafo maior
-        
-        for i in subGrafo:
-            if i not in grafo:
-                print("Nao é subgrafo")
-                return 
-        return
-    
-    def is_subgrafo_gerador(self):
+        if isinstance(listaDeGrafos[grafo], list):
+            print(": Este metodo suporta apenas Grafos Esparsos")
+
+        elif isinstance(listaDeGrafos[subGrafo], dict):
+            
+            verticesGrafo = []
+            verticesSubGrafo = []
+
+            for i in listaDeGrafos[grafo]:
+                verticesGrafo.append(i)
+            print(verticesGrafo)
+            input("")
+            for j in listaDeGrafos[subGrafo]:
+                verticesSubGrafo.append(j)
+            print(verticesSubGrafo)
+            input("")
+            
+            if verticesSubGrafo not in verticesGrafo:
+                Grafer.clear()
+                print(f": Grafo {subGrafo} nao é sub-grafo de {grafo}\n")
+                return
+            arestasGrafo = Grafer.get_arestas(listaDeGrafos, grafo)
+            arestaSubGrafo = Grafer.get_arestas(listaDeGrafos, subGrafo)
+
+            if arestaSubGrafo not in arestasGrafo:
+                
+                Grafer.clear()
+                print(f": Grafo abluble ble {subGrafo} nao é sub-grafo de {grafo}\n")
+                return
+
+                # Verifica se todos os vértices do grafo atual estão no outro grafo
+                
+
+            for aresta in self.get_arestas():
+                if aresta not in outro_grafo.get_arestas():
+                    return False
+                
+            #Compara se as arestas aparecem na mesma quantidade em ambos os grafos
+            for aresta in self.get_arestas():
+                if self.get_arestas().count(aresta) != outro_grafo.get_arestas().count(aresta):
+                    return False
+                
+        # Se todas as arestas e vértices estão presentes, é um subgrafo
+        return True 
+    def is_subgrafo_gerador(listaDeGrafos, grafo, subGrafo):
+    #Um subgrafo H é um subgrafo gerador (spanning subgraph) de um
+    #grafo G se ele contiver todos os vértices do grafo original, ou
+    #seja, V(H)=V(G).
+
         return
     
     def is_subgrafo_induzido(self):
