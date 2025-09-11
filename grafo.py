@@ -987,25 +987,37 @@ class Grafer(Grafo):
 
         elif isinstance(listaDeGrafos[subGrafo], dict):
             
-            verticesGrafo = []
-            verticesSubGrafo = []
+            for i in listaDeGrafos[subGrafo]:
+                if i not in listaDeGrafos[grafo]:
+                    Grafer.clear()
+                    print(f": Grafo {subGrafo} nao é sub-grafo de {grafo}\n")
+                    return
+                else:
+                    print(f": {i} esta no grafo")
+                    input(":")
+            arestasGrafo = []
+            arestasSubGrafo = []
 
+            #pega aarestas do grafo
             for i in listaDeGrafos[grafo]:
-                verticesGrafo.append(i)
-            print(verticesGrafo)
-            input("")
-            for j in listaDeGrafos[subGrafo]:
-                verticesSubGrafo.append(j)
-            print(verticesSubGrafo)
-            input("")
-            
-            if verticesSubGrafo not in verticesGrafo:
-                Grafer.clear()
-                print(f": Grafo {subGrafo} nao é sub-grafo de {grafo}\n")
-                return
-            arestasGrafo = Grafer.get_arestas(listaDeGrafos, grafo)
-            arestaSubGrafo = Grafer.get_arestas(listaDeGrafos, subGrafo)
+                arestasGrafo.append(listaDeGrafos[grafo][i])
+                print(arestasGrafo)
+                input()
 
+            #pega arestas do subgrafo
+            for i in listaDeGrafos[subGrafo]:
+                arestasSubGrafo.append(listaDeGrafos[subGrafo][i])
+                print(arestasSubGrafo)
+                input()
+
+            for i in arestasSubGrafo:
+                if i not in arestasGrafo:
+                    print(f": aresta {i} nao existe em grafo")
+                    input()
+                else:
+                    print(f": aresta {i} esta no grafo")
+                    input()
+            
             if arestaSubGrafo not in arestasGrafo:
                 
                 Grafer.clear()
