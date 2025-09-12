@@ -450,7 +450,7 @@ class Grafer(Grafo):
             print("  ( 0 ) Retornar para o Menu Principal")
             print("  ( 4 ) Atividade 4: #STATUS: DONE")
             print("  ( 5 ) Atividade 5: #STATUS: DONE")
-            print("  ( 6 ) Atividade 6: #STATUS: to do")
+            print("  ( 6 ) Atividade 6: #STATUS: DONE")
             print("  ( 7 ) Atividade 7: #STATUS: to do")
             print("  ( 9 ) Atividade 9: #STATUS: to do")
             print("  ( 6 ) Grafo Esparso.\n")
@@ -589,7 +589,7 @@ class Grafer(Grafo):
                                 Grafer.is_completo(listaDeGrafos, grafoEscolha)
             
                 #=================[ Atividade 6 ]======================
-                #STATUS: TO DO
+                #STATUS: DONE
                 elif value == 6: 
                     Grafer.clear()
                     while True: #Segundo loop do usuario
@@ -598,9 +598,9 @@ class Grafer(Grafo):
                         print("  ( 0 ) Retornar para o Menu Principal")
                         print("  ( 1 ) get_vertices") #STATUS: DONE
                         print("  ( 2 ) get_arestas") #STATUS: DONE
-                        print("  ( 3 ) is_subgrafo") #STATUS:
-                        print("  ( 4 ) is_subgrafo_gerador") #STATUS:
-                        print("  ( 5 ) is_subgrafo_induzido") #STATUS:
+                        print("  ( 3 ) is_subgrafo") #STATUS: DONE
+                        print("  ( 4 ) is_subgrafo_gerador") #STATUS: DONE
+                        print("  ( 5 ) is_subgrafo_induzido") #STATUS: DONE
                         #checa se inteiro
                         select = input("\n: Selecione a atividade: .: ")
                         select = Grafer.inputInt(select)
@@ -611,14 +611,14 @@ class Grafer(Grafo):
                                 Grafer.clear()
                                 break
                             #limite de opcoes
-                            if select >3 or select < 0:
+                            if select >5 or select < 0:
                                 Grafer.clear()
                                 print("!ERRO! Insira um numero valido! >:P\n")
                             
                             #get_vertices
                             elif select == 1:
                                 print(": Escolha o grafo;")
-                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)}")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)-1}")
                                 grafoEscolha = input("  .: ")
                                 grafoEscolha = Grafer.inputInt(grafoEscolha)
                                 Grafer.get_vertices(listaDeGrafos, grafoEscolha)
@@ -626,7 +626,7 @@ class Grafer(Grafo):
                             #get_arestas
                             elif select == 2:
                                 print(": Escolha o grafo;")
-                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)}")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)-1}")
                                 grafoEscolha = input("  .: ")
                                 grafoEscolha = Grafer.inputInt(grafoEscolha)
                                 Grafer.get_arestas(listaDeGrafos, grafoEscolha)
@@ -647,19 +647,29 @@ class Grafer(Grafo):
                             #is_subgrafo_gerador
                             elif select == 4:
                                 print(": Escolha o grafo;")
-                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)}")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)-1}")
                                 grafoEscolha = input("  .: ")
                                 grafoEscolha = Grafer.inputInt(grafoEscolha)
-                                Grafer.is_subgrafo_gerador(listaDeGrafos, grafoEscolha)
+
+                                print("\n: Escolha o sub-grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)-1}")
+                                subGrafoEscolha = input("  .: ")
+                                subGrafoEscolha = Grafer.inputInt(subGrafoEscolha)
+                                Grafer.is_subgrafo_gerador(listaDeGrafos, grafoEscolha, subGrafoEscolha)
 
                             #is_subgrafo_induzido
                             elif select == 5:
                                 print(": Escolha o grafo;")
-                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)}")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)-1}")
                                 grafoEscolha = input("  .: ")
                                 grafoEscolha = Grafer.inputInt(grafoEscolha)
-                                Grafer.is_subgrafo_induzido(listaDeGrafos, grafoEscolha)
-                
+
+                                print("\n: Escolha o sub-grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)-1}")
+                                subGrafoEscolha = input("  .: ")
+                                subGrafoEscolha = Grafer.inputInt(subGrafoEscolha)
+                                Grafer.is_subgrafo_induzido(listaDeGrafos, grafoEscolha, subGrafoEscolha)
+
                 #=================[ Atividade 7 ]======================
                 #STATUS: TO DO
                 elif value == 7: 
@@ -685,11 +695,17 @@ class Grafer(Grafo):
                             
                             #is_isomorfo
                             elif select == 1:
+                                
                                 print(": Escolha o grafo;")
-                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)}")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)-1}")
                                 grafoEscolha = input("  .: ")
                                 grafoEscolha = Grafer.inputInt(grafoEscolha)
-                                Grafer.is_isomorfo(listaDeGrafos, grafoEscolha)
+
+                                print("\n: Escolha o segundo grafo;")
+                                print(f": Grafos disponiveis: de 0 a {len(listaDeGrafos)-1}")
+                                subGrafoEscolha = input("  .: ")
+                                subGrafoEscolha = Grafer.inputInt(subGrafoEscolha)
+                                Grafer.is_isomorfo(listaDeGrafos, grafoEscolha, subGrafoEscolha)
 
                 #=================[ Atividade 9 ]======================
                 #STATUS: TO DO
@@ -947,7 +963,7 @@ class Grafer(Grafo):
                 return 
     
     #----------------------------------------------------------#
-    #Atividade 6: Subgrafos
+    #Atividade 6: Subgrafos: DONE
 
     def get_vertices(self, index):
         Grafer.clear()
@@ -982,6 +998,7 @@ class Grafer(Grafo):
     #um subgrafo é um grafo que pode ser formado com os vertices de um grafo maior,
     #assim como todas as arestas
     #logo, cada vertice de um subgrafo deve existir no grafo maior
+    
         if isinstance(listaDeGrafos[grafo], list):
             print(": Este metodo suporta apenas Grafos Esparsos")
 
@@ -995,6 +1012,7 @@ class Grafer(Grafo):
                 else:
                     print(f": {i} esta no grafo")
                     input(":")
+
             arestasGrafo = []
             arestasSubGrafo = []
 
@@ -1013,37 +1031,190 @@ class Grafer(Grafo):
             for i in arestasSubGrafo:
                 if i not in arestasGrafo:
                     print(f": aresta {i} nao existe em grafo")
+                    Grafer.clear()
+                    print(f": Grafo {subGrafo} nao é sub-grafo de {grafo}\n")
                     input()
+                    return
                 else:
                     print(f": aresta {i} esta no grafo")
                     input()
-            
-            if arestaSubGrafo not in arestasGrafo:
-                
-                Grafer.clear()
-                print(f": Grafo abluble ble {subGrafo} nao é sub-grafo de {grafo}\n")
-                return
+            Grafer.clear()
+            print(f": Grafo {subGrafo} é sub-grafo de {grafo}\n")
 
-                # Verifica se todos os vértices do grafo atual estão no outro grafo
-                
-
-            for aresta in self.get_arestas():
-                if aresta not in outro_grafo.get_arestas():
-                    return False
-                
-            #Compara se as arestas aparecem na mesma quantidade em ambos os grafos
-            for aresta in self.get_arestas():
-                if self.get_arestas().count(aresta) != outro_grafo.get_arestas().count(aresta):
-                    return False
-                
         # Se todas as arestas e vértices estão presentes, é um subgrafo
         return True 
+    
     def is_subgrafo_gerador(listaDeGrafos, grafo, subGrafo):
     #Um subgrafo H é um subgrafo gerador (spanning subgraph) de um
     #grafo G se ele contiver todos os vértices do grafo original, ou
     #seja, V(H)=V(G).
 
-        return
+        if isinstance(listaDeGrafos[grafo], list):
+            print(": Este metodo suporta apenas Grafos Esparsos")
+
+        elif isinstance(listaDeGrafos[subGrafo], dict):
+            
+            for i in listaDeGrafos[grafo]:
+                if i not in listaDeGrafos[subGrafo]:
+                    Grafer.clear()
+                    print(f": Grafo {subGrafo} nao é sub-grafo gerador de {grafo}\n")
+                    return
+                else:
+                    print(f": {i} esta no grafo")
+                    input(":")
+            Grafer.clear()
+            print(f": Grafo {subGrafo} é sub-grafo Gerador de {grafo}\n")
+        return True
     
-    def is_subgrafo_induzido(self):
+    def is_subgrafo_induzido(listaDeGrafos, grafo, subGrafo):
+    # É definido por um subconjunto de vértices do grafo original.
+    # • Se S é um subconjunto de vértices de um grafo G, o subgrafo induzido
+    # por S, denotado como G[S], é o grafo que tem S como seu conjunto
+    # de vértices e contém todas as arestas de G que conectam dois
+    # vértices em S.
+    # • Em essência, ao selecionar um grupo de vértices, as arestas entre
+    # eles são "herdadas" do grafo original.
+        if isinstance(listaDeGrafos[grafo], list):
+            print(": Este metodo suporta apenas Grafos Esparsos")
+
+        elif isinstance(listaDeGrafos[subGrafo], dict):
+            
+            for i in listaDeGrafos[subGrafo]:
+                if i not in listaDeGrafos[grafo]:
+                    Grafer.clear()
+                    print(f": Grafo {subGrafo} nao é sub-grafo de {grafo}\n")
+                    return
+                else:
+                    print(f": {i} esta no grafo")
+                    input(":")
+
+            arestasGrafo = []
+            arestasSubGrafo = []
+
+            #pega aarestas do grafo
+            for i in listaDeGrafos[grafo]:
+                arestasGrafo.append(listaDeGrafos[grafo][i])
+                print(arestasGrafo)
+                input()
+
+            #pega arestas do subgrafo
+            for i in listaDeGrafos[subGrafo]:
+                arestasSubGrafo.append(listaDeGrafos[subGrafo][i])
+                print(arestasSubGrafo)
+                input()
+
+            for i in arestasSubGrafo:
+                if i not in arestasGrafo:
+                    print(f": aresta {i} nao existe em grafo")
+                    Grafer.clear()
+                    print(f": Grafo {subGrafo} nao é sub-grafo de {grafo}\n")
+                    input()
+                    return
+                else:
+                    print(f": aresta {i} esta no grafo")
+                    input()
+            Grafer.clear()
+            print(f": Grafo {subGrafo} é sub-grafo induzido de {grafo}\n")
+
+        # Se todas as arestas e vértices estão presentes, é um subgrafo
+        return True 
+        
+ 
+    #----------------------------------------------------------#
+    #Atividade 7: IS ISOMORFO
+    
+    def is_isomorfo(listaDeGrafos, grafo, subGrafo):
+    # dois grafos G e G ∗ são isomórficos se pudermos
+    # mapear exclusivamente os vértices e arestas de G para aqueles de G
+    # ∗ tal que se dois vértices fossem unidos em G por um número de
+    # arestas, suas contrapartes em G ∗ seriam unidas pelo mesmo
+    # número de arestas.
+            
+        if isinstance(listaDeGrafos[grafo], list):
+            print(": Este metodo suporta apenas Grafos Esparsos")
+
+        elif isinstance(listaDeGrafos[subGrafo], dict):
+            
+            vertGrafo = []
+            for i in listaDeGrafos[grafo]:
+                vertGrafo.append(i)
+
+            vertGrafo2 = []
+            for i in listaDeGrafos[subGrafo]:
+                vertGrafo2.append(i)
+
+            if vertGrafo != vertGrafo2:
+                print(": os grafos nao possuem mesmo numero de vertices")
+                input()
+                return False
+
+            arestasGrafo = []
+            arestasSubGrafo = []
+
+            #pega aarestas do grafo
+            for i in listaDeGrafos[grafo]:
+                arestasGrafo.append(listaDeGrafos[grafo][i])
+                print(arestasGrafo)
+                input()
+
+            #pega arestas do subgrafo
+            for i in listaDeGrafos[subGrafo]:
+                arestasSubGrafo.append(listaDeGrafos[subGrafo][i])
+                print(arestasSubGrafo)
+                input()
+
+            #checa se possuem mesmas arestas
+            if arestasGrafo != arestasSubGrafo:
+                    print(": Os grafos nao sao isomorfos, pois diferem nas arestas")
+                    input()
+                    return
+            
+            Grafer.clear()
+
+            # Se todas as arestas e vértices estão presentes, sao iguais
+
+            #checa se possuem mesma sequencia de graus
+            seqGrafo = sorted([len(values) for values in listaDeGrafos[grafo].values()]) #retorna a sequencia de graus
+            seqSubGrafo = sorted([len(values) for values in listaDeGrafos[subGrafo].values()])
+    
+            print(seqGrafo, seqSubGrafo)
+            input()
+
+            if seqGrafo != seqSubGrafo:
+                print(": Os grafos nao sao isomorfos, pois diferem nas sequencias de graus")
+                input()
+                return
+            
+
         return
+
+    def is_isomorfu(self, grafo):
+        """
+        Verifica se dois grafos são isomorfos usando força 
+        bruta com poda por invariantes.
+        """
+    # --- ETAPA 1: PODA RÁPIDA COM INVARIANTES ---
+
+    
+    # --- ETAPA 2: BUSCA EXAUSTIVA (FORÇA BRUTA) ---
+
+    # Se os invariantes passaram, devemos testar as correspondências.
+    #vertices1 = list(self.get_vertices())
+    #vertices2 = list(grafo.get_vertices())
+
+    # Gera todas as permutações dos vértices do grafo 2.
+    #Ex. [1,2] -> (1,2), (2,1)
+    # Cada permutação é uma potencial correspondência para os vértices do grafo 1.
+    #for p in itertools.permutations(vertices2):
+        #Cria o mapeamento dos vértices do grafo 1 para o grafo 2
+        #Ex. [A,B] e (1,2), (2,1) -> {A:1, B:2}, {A:2, B:1}
+        #mapping = dict(zip(vertices1, p))
+
+            
+        # Verifica se esta correspondência preserva a estrutura de arestas
+        #if self(self, grafo, mapping):
+            #return True
+                
+    # Se testou todas as permutações e nenhuma funcionou, eles não são isomorfos.
+    # return False
+
